@@ -12,7 +12,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -35,7 +35,7 @@
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Source Sans 3', -apple-system, sans-serif;
+    font-family: 'Lora', Georgia, serif;
     -webkit-font-smoothing: antialiased;
     line-height: 1.55;
     background-image:
@@ -60,7 +60,7 @@
     .masthead { padding: 36px 96px 24px; }
   }
   .brand-mark {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Lora', Georgia, serif;
     font-size: 20px;
     font-weight: 500;
     color: var(--ink);
@@ -101,19 +101,19 @@
   }
 
   .eyebrow {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    font-size: 13px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
     color: var(--muted);
     margin-bottom: 28px;
-    letter-spacing: 0.02em;
   }
   @media (min-width: 900px) {
-    .eyebrow { font-size: 14px; margin-bottom: 36px; }
+    .eyebrow { font-size: 13px; margin-bottom: 36px; }
   }
 
   .headline {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Lora', Georgia, serif;
     font-weight: 400;
     font-size: 44px;
     line-height: 1.04;
@@ -135,7 +135,7 @@
   }
 
   .body {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Lora', Georgia, serif;
     font-size: 19px;
     line-height: 1.55;
     color: var(--ink-2);
@@ -147,7 +147,7 @@
   }
 
   .return {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.32em;
@@ -172,14 +172,14 @@
     margin: 0 auto 12px;
   }
   .foot-mark {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Lora', Georgia, serif;
     font-style: italic;
     font-size: 16px;
     color: var(--ink);
     margin-bottom: 6px;
   }
   .foot-tag {
-    font-family: 'Source Sans 3', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
     font-weight: 500;
     letter-spacing: 0.32em;
@@ -200,11 +200,11 @@
 
 <div class="masthead">
   <a href="/" class="brand-mark"><svg class="brand-glyph" viewBox="0 0 100 100" role="img" aria-label="Firstlight Foundry colophon"><g fill="#1A1815"><path d="M18 18 L52 18 L52 27 C40 27 33 26.5 29.5 30 L29.5 45 L44 45 L44 53 C37 53 32.5 52.8 29.5 56 L29.5 74 C29.5 78 32 78.6 37 79.6 L37 82 L10 82 L10 79.6 C15 78.6 18 78 18 74 Z"/><path d="M52 18 L85 18 L85 27 C73 27 67 26.5 63.5 30 L63.5 45 L77 45 L77 53 C70 53 66.5 52.8 63.5 56 L63.5 74 C63.5 78 66 78.6 71 79.6 L71 82 L44 82 L44 79.6 C49 78.6 52 78 52 74 Z"/></g><rect x="75" y="75" width="7" height="7" fill="#B8472A"/></svg><span>Firstlight Foundry</span></a>
-  <span class="masthead-meta">№ 001</span>
+  <span class="masthead-meta">Est. MMXXVI</span>
 </div>
 
 <main>
-  <div class="eyebrow">An acknowledgment.</div>
+  <div class="eyebrow">Received</div>
   <h1 class="headline">Word <em>received.</em></h1>
   <div class="accent-rule"></div>
   <p class="body">Thank you for reaching out. We read everything that comes in. If your message asks for a reply, you will hear from us through the contact you provided.</p>

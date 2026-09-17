@@ -30,7 +30,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -64,6 +64,8 @@
 <style>
   *,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+  /* Type scale: Lora + IBM Plex Mono on a perfect fourth (1.333, base 20).
+     Desktop steps: 13 · 20 · 27 · 36 · 47 · 63 · 84. Mobile: 12 · 17 · 22 · 28 · 34 · 42. */
   :root {
     --bg: #F4EEE2;
     --bg-alt: #EBE3D2;
@@ -73,6 +75,8 @@
     --ember: #B8472A;
     --ember-soft: #C5604A;
     --rule: rgba(26,24,21,0.18);
+    --serif: 'Lora', Georgia, serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
   }
 
   html { scroll-behavior: smooth; }
@@ -80,7 +84,7 @@
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Source Sans 3', -apple-system, sans-serif;
+    font-family: var(--serif);
     -webkit-font-smoothing: antialiased;
     line-height: 1.55;
     overflow-x: hidden;
@@ -95,7 +99,7 @@
     border-bottom: 1px solid var(--ink);
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     max-width: 1280px;
     margin: 0 auto;
   }
@@ -103,7 +107,7 @@
     .masthead { padding: 36px 96px 24px; }
   }
   .brand-mark {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--serif);
     font-size: 20px;
     font-weight: 500;
     color: var(--ink);
@@ -119,18 +123,19 @@
     transform: translateY(-1px);
   }
   @media (min-width: 900px) {
-    .brand-mark { font-size: 24px; }
-    .brand-glyph { width: 31px; height: 31px; }
+    .brand-mark { font-size: 27px; }
+    .brand-glyph { width: 32px; height: 32px; }
   }
   .masthead-meta {
-    font-size: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--muted);
   }
 
-  /* Section shell */
+  /* Section shell — content column + folio rail */
   section {
     padding: 96px 28px;
     max-width: 1280px;
@@ -141,17 +146,51 @@
   }
   section + section { border-top: 1px solid var(--rule); }
 
+  .cols { display: block; }
+  @media (min-width: 1100px) {
+    .cols {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px;
+      gap: 72px;
+      align-items: start;
+    }
+  }
+  .folio {
+    display: none;
+  }
+  @media (min-width: 1100px) {
+    .folio {
+      display: block;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 160px;
+      line-height: 0.9;
+      text-align: right;
+      color: rgba(26,24,21,0.08);
+      user-select: none;
+    }
+    .folio::after {
+      content: '';
+      display: block;
+      width: 56px;
+      height: 1px;
+      background: var(--rule);
+      margin: 28px 0 0 auto;
+    }
+  }
+
   .eyebrow {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    font-size: 13px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
     color: var(--muted);
     margin-bottom: 28px;
-    letter-spacing: 0.02em;
   }
   @media (min-width: 900px) {
-    .eyebrow { font-size: 14px; margin-bottom: 36px; }
+    .eyebrow { font-size: 13px; margin-bottom: 36px; }
   }
+  .eyebrow .no { color: var(--ink); }
 
   /* Hero */
   .hero {
@@ -162,19 +201,19 @@
     .hero { padding-top: 140px; padding-bottom: 140px; }
   }
   .issue {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--serif);
     font-style: italic;
     font-size: 12px;
     color: var(--muted);
     margin-bottom: 56px;
   }
   @media (min-width: 900px) {
-    .issue { font-size: 14px; margin-bottom: 80px; }
+    .issue { font-size: 13px; margin-bottom: 80px; }
   }
   .hero-quote {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--serif);
     font-weight: 400;
-    font-size: 44px;
+    font-size: 42px;
     line-height: 1.06;
     letter-spacing: -0.02em;
     color: var(--ink);
@@ -182,21 +221,21 @@
     max-width: 16ch;
   }
   @media (min-width: 900px) {
-    .hero-quote { font-size: 96px; }
+    .hero-quote { font-size: 84px; }
   }
   .hero-quote em {
     font-style: italic;
     color: var(--ember);
   }
   .hero-attr {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--serif);
     font-style: italic;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--muted);
     margin-bottom: 80px;
   }
   @media (min-width: 900px) {
-    .hero-attr { font-size: 16px; }
+    .hero-attr { font-size: 15px; }
   }
   .accent-rule {
     width: 56px;
@@ -205,53 +244,68 @@
     margin: 0 0 32px;
   }
   .hero-tag {
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 16px;
+    font-family: var(--serif);
+    font-size: 17px;
     font-weight: 400;
     color: var(--ink-2);
     max-width: 48ch;
     line-height: 1.6;
   }
   @media (min-width: 900px) {
-    .hero-tag { font-size: 19px; }
+    .hero-tag { font-size: 20px; }
   }
   .hero-tag em {
-    font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
     color: var(--ember);
   }
 
-  /* Stance */
-  .stance-headline {
-    font-family: 'Playfair Display', Georgia, serif;
+  /* Section headlines — one size, one voice */
+  .headline {
+    font-family: var(--serif);
     font-weight: 400;
-    font-size: 30px;
-    line-height: 1.12;
+    font-size: 34px;
+    line-height: 1.1;
     letter-spacing: -0.015em;
     color: var(--ink);
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     max-width: 18ch;
   }
   @media (min-width: 900px) {
-    .stance-headline { font-size: 56px; }
+    .headline { font-size: 63px; margin-bottom: 32px; }
   }
-  .stance-headline em {
+  .headline em {
     font-style: italic;
     color: var(--ember);
   }
-  .stance-body {
-    position: relative;
-    max-width: 64ch;
-    font-size: 16px;
+
+  .body-text {
+    font-family: var(--serif);
+    font-size: 17px;
     line-height: 1.7;
     color: var(--ink-2);
+    max-width: 60ch;
   }
   @media (min-width: 900px) {
-    .stance-body { font-size: 19px; line-height: 1.7; }
+    .body-text { font-size: 20px; }
   }
+
+  .callout {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--ember);
+    max-width: 44ch;
+  }
+  @media (min-width: 900px) {
+    .callout { font-size: 27px; }
+  }
+
+  /* Stance */
+  .stance-body { position: relative; }
   .drop-cap {
     float: left;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--serif);
     font-weight: 500;
     color: var(--ember);
     font-size: 60px;
@@ -259,31 +313,20 @@
     padding: 8px 12px 0 0;
   }
   @media (min-width: 900px) {
-    .drop-cap { font-size: 92px; padding: 14px 16px 0 0; }
+    .drop-cap { font-size: 84px; padding: 12px 16px 0 0; }
   }
 
   /* Pattern */
-  .pattern-headline {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 1.1;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-    margin-bottom: 14px;
-  }
-  @media (min-width: 900px) {
-    .pattern-headline { font-size: 56px; }
-  }
   .pattern-sub {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--serif);
     font-style: italic;
-    font-size: 16px;
+    font-size: 17px;
     color: var(--muted);
     margin-bottom: 56px;
+    max-width: 44ch;
   }
   @media (min-width: 900px) {
-    .pattern-sub { font-size: 18px; }
+    .pattern-sub { font-size: 20px; }
   }
   .pattern-row {
     padding: 28px 0;
@@ -304,113 +347,111 @@
     }
   }
   .pattern-year {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--serif);
     font-style: italic;
     font-size: 22px;
     color: var(--ember);
     line-height: 1;
   }
   @media (min-width: 900px) {
-    .pattern-year { font-size: 28px; }
+    .pattern-year { font-size: 27px; }
   }
   .pattern-line {
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 16px;
+    font-family: var(--serif);
+    font-size: 17px;
     line-height: 1.6;
     color: var(--ink-2);
   }
   @media (min-width: 900px) {
-    .pattern-line { font-size: 18px; }
+    .pattern-line { font-size: 20px; }
   }
   .pattern-close {
-    font-family: 'Playfair Display', Georgia, serif;
+    margin-top: 56px;
+  }
+
+  /* The Press — catalog entry */
+  .press-entry {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  @media (min-width: 900px) {
+    .press-entry {
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 72px;
+      padding: 56px 0;
+      align-items: start;
+    }
+  }
+  .press-status {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 20px;
+  }
+  .press-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  @media (min-width: 900px) {
+    .press-title { font-size: 36px; }
+  }
+  .press-author {
+    font-family: var(--serif);
     font-style: italic;
     font-size: 17px;
-    line-height: 1.4;
-    color: var(--ember);
-    margin-top: 56px;
-    max-width: 48ch;
-  }
-  @media (min-width: 900px) {
-    .pattern-close { font-size: 22px; }
-  }
-
-  /* The Question We Ask */
-  .question-headline {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 1.06;
-    letter-spacing: -0.02em;
-    color: var(--ink);
+    color: var(--muted);
     margin-bottom: 24px;
-    max-width: 16ch;
   }
   @media (min-width: 900px) {
-    .question-headline { font-size: 80px; }
+    .press-author { font-size: 20px; }
   }
-  .question-callout {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    font-size: 19px;
-    line-height: 1.4;
-    color: var(--ember);
-    margin-bottom: 32px;
-    max-width: 40ch;
-  }
-  @media (min-width: 900px) {
-    .question-callout { font-size: 26px; }
-  }
-  .question-body {
-    font-size: 15.5px;
+  .press-desc {
+    font-family: var(--serif);
+    font-size: 17px;
     line-height: 1.7;
     color: var(--ink-2);
-    max-width: 56ch;
+    max-width: 52ch;
   }
   @media (min-width: 900px) {
-    .question-body { font-size: 18px; }
+    .press-desc { font-size: 20px; }
   }
+  .press-spec {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  @media (min-width: 900px) {
+    .press-spec { font-size: 13px; }
+  }
+  .press-spec div {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .press-spec div:first-child { padding-top: 0; }
+  .press-spec div:last-child { border-bottom: 0; }
 
-  /* The Promise */
-  .promise-headline {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 1.08;
-    letter-spacing: -0.015em;
-    color: var(--ink);
-    margin-bottom: 32px;
-    max-width: 22ch;
-  }
-  @media (min-width: 900px) {
-    .promise-headline { font-size: 64px; }
-  }
-  .promise-headline em {
-    font-style: italic;
-    color: var(--ember);
-  }
-  .promise-body {
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--ink-2);
-    max-width: 56ch;
-    margin-bottom: 32px;
-  }
-  @media (min-width: 900px) {
-    .promise-body { font-size: 19px; }
-  }
+  /* Promise */
   .promise-close {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    font-size: 19px;
-    line-height: 1.4;
-    color: var(--ember);
-    max-width: 44ch;
     border-left: 2px solid var(--ember);
     padding-left: 22px;
+    margin-top: 32px;
   }
   @media (min-width: 900px) {
-    .promise-close { font-size: 24px; padding-left: 28px; }
+    .promise-close { padding-left: 28px; }
   }
 
   /* Begin */
@@ -433,28 +474,30 @@
     margin: 0 auto;
   }
   .begin .eyebrow { color: var(--ember-soft); }
+  .begin .eyebrow .no { color: var(--bg); }
   .begin-prompt {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--serif);
     font-style: italic;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 34px;
     line-height: 1.18;
     color: var(--bg);
     margin-bottom: 40px;
     max-width: 22ch;
   }
   @media (min-width: 900px) {
-    .begin-prompt { font-size: 56px; margin-bottom: 28px; }
+    .begin-prompt { font-size: 63px; margin-bottom: 28px; }
   }
   .begin-sub {
-    font-size: 16px;
+    font-family: var(--serif);
+    font-size: 17px;
     line-height: 1.6;
     color: rgba(244,238,226,0.7);
     margin-bottom: 56px;
     max-width: 56ch;
   }
   @media (min-width: 900px) {
-    .begin-sub { font-size: 18px; margin-bottom: 72px; }
+    .begin-sub { font-size: 20px; margin-bottom: 72px; }
   }
 
   form { max-width: 64ch; }
@@ -466,22 +509,22 @@
     border: 0;
     border-bottom: 1px solid rgba(244,238,226,0.4);
     padding: 18px 0;
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 16px;
+    font-family: var(--serif);
+    font-size: 17px;
     color: var(--bg);
     outline: none;
     transition: border-color .2s;
   }
   .form-textarea {
     min-height: 120px;
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--serif);
     font-style: italic;
     font-size: 22px;
     line-height: 1.4;
     resize: vertical;
   }
   @media (min-width: 900px) {
-    .form-textarea { font-size: 26px; min-height: 140px; }
+    .form-textarea { font-size: 27px; min-height: 140px; }
   }
   .form-input::placeholder,
   .form-textarea::placeholder {
@@ -498,9 +541,9 @@
     color: var(--bg);
     border: 0;
     padding: 18px 36px;
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
     letter-spacing: 0.32em;
     text-transform: uppercase;
     cursor: pointer;
@@ -521,15 +564,15 @@
     margin: 0 auto 14px;
   }
   .foot-mark {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: var(--serif);
     font-style: italic;
-    font-size: 18px;
+    font-size: 20px;
     color: var(--ink);
     margin-bottom: 8px;
   }
   .foot-tag {
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 11px;
+    font-family: var(--mono);
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.32em;
     text-transform: uppercase;
@@ -537,7 +580,8 @@
     margin-bottom: 28px;
   }
   .foot-meta {
-    font-size: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--muted);
@@ -549,32 +593,42 @@
 
 <div class="masthead">
   <a href="#" class="brand-mark"><svg class="brand-glyph" viewBox="0 0 100 100" role="img" aria-label="Firstlight Foundry colophon"><g fill="#1A1815"><path d="M18 18 L52 18 L52 27 C40 27 33 26.5 29.5 30 L29.5 45 L44 45 L44 53 C37 53 32.5 52.8 29.5 56 L29.5 74 C29.5 78 32 78.6 37 79.6 L37 82 L10 82 L10 79.6 C15 78.6 18 78 18 74 Z"/><path d="M52 18 L85 18 L85 27 C73 27 67 26.5 63.5 30 L63.5 45 L77 45 L77 53 C70 53 66.5 52.8 63.5 56 L63.5 74 C63.5 78 66 78.6 71 79.6 L71 82 L44 82 L44 79.6 C49 78.6 52 78 52 74 Z"/></g><rect x="75" y="75" width="7" height="7" fill="#B8472A"/></svg><span>Firstlight Foundry</span></a>
-  <span class="masthead-meta">№ 001</span>
+  <span class="masthead-meta">Est. MMXXVI</span>
 </div>
 
 <main>
 
   <!-- HERO -->
   <section class="hero" id="top">
-    <div class="issue">A small studio, est. MMXXVI</div>
+    <div class="issue">A small studio.</div>
     <h1 class="hero-quote">A book is the oldest <em>technology</em> of solitude.</h1>
     <div class="hero-attr">— What Is A Book</div>
     <div class="accent-rule"></div>
     <p class="hero-tag">Firstlight Foundry is a small studio shaping voices into form. We work with one author at a time. <em>The author owns the voice. We hold the form.</em></p>
   </section>
 
-  <!-- THE STANCE -->
+  <!-- THE WORK -->
   <section id="stance">
-    <div class="eyebrow">A note on the work.</div>
-    <h2 class="stance-headline">Voices that deserve <em>form.</em></h2>
-    <p class="stance-body"><span class="drop-cap">B</span>ooks are our canonical artifact, the form we press toward in an age of content collapse. We are a small studio. We use every tool at hand to make books that couldn't have been made before. Some voices were never going to write the book themselves. Now they can: the dyslexic thinker brilliant in conversation, the practitioner with forty years of unwritten expertise, the field-defining mind locked behind a language barrier. The work is broader than the book. The book remains the form.</p>
+    <div class="cols">
+      <div>
+        <div class="eyebrow"><span class="no">№ 001</span> · The Work</div>
+        <h2 class="headline">Voices that deserve <em>form.</em></h2>
+        <p class="body-text stance-body"><span class="drop-cap">B</span>ooks are our canonical artifact, the form we press toward in an age of content collapse. We are a small studio. We use every tool at hand to make books that couldn't have been made before. Some voices were never going to write the book themselves. Now they can: the dyslexic thinker brilliant in conversation, the practitioner with forty years of unwritten expertise, the field-defining mind locked behind a language barrier. The work is broader than the book. The book remains the form.</p>
+      </div>
+      <div class="folio">001</div>
+    </div>
   </section>
 
   <!-- THE PATTERN -->
   <section id="pattern">
-    <div class="eyebrow">A pattern, observed.</div>
-    <h2 class="pattern-headline">This is the third time.</h2>
-    <p class="pattern-sub">Every printing technology floods the world with junk first. The curators come after.</p>
+    <div class="cols">
+      <div>
+        <div class="eyebrow"><span class="no">№ 002</span> · The Pattern</div>
+        <h2 class="headline">This is the third time.</h2>
+        <p class="pattern-sub">Every printing technology floods the world with junk first. The curators come after.</p>
+      </div>
+      <div class="folio">002</div>
+    </div>
 
     <div class="pattern-row">
       <div class="pattern-year">1454</div>
@@ -591,29 +645,65 @@
       <div class="pattern-line">Foraging guides hallucinate edible mushrooms. Travel books invent Cambodian temples in Manhattan. Self-published titles ship by the thousand, hallucinated facts left intact, sold with reviews written by the same machines that wrote the books.</div>
     </div>
 
-    <p class="pattern-close">The slop arrived first. The curators came after. They are arriving now.</p>
+    <p class="callout pattern-close">The slop arrived first. The curators came after. They are arriving now.</p>
   </section>
 
-  <!-- THE QUESTION WE ASK -->
+  <!-- THE QUESTION -->
   <section id="question">
-    <div class="eyebrow">A question we ask.</div>
-    <h2 class="question-headline">Who gets to write a book?</h2>
-    <p class="question-callout">For most of history, only those with the time, the training, and the tongue.</p>
-    <p class="question-body">Great ideas have always died inside people who couldn't write seventy thousand words. That filter was never about quality. It was about access. The work of a small studio in our era is to find the voices the page once refused, and to bring them into form without losing what made them rare.</p>
+    <div class="cols">
+      <div>
+        <div class="eyebrow"><span class="no">№ 003</span> · The Question</div>
+        <h2 class="headline">Who gets to write a book?</h2>
+        <p class="callout" style="margin-bottom: 32px;">For most of history, only those with the time, the training, and the tongue.</p>
+        <p class="body-text">Great ideas have always died inside people who couldn't write seventy thousand words. That filter was never about quality. It was about access. The work of a small studio in our era is to find the voices the page once refused, and to bring them into form without losing what made them rare.</p>
+      </div>
+      <div class="folio">003</div>
+    </div>
   </section>
 
   <!-- THE PROMISE -->
   <section id="promise">
-    <div class="eyebrow">A promise.</div>
-    <h2 class="promise-headline">The author owns the voice. <em>We hold the form.</em></h2>
-    <p class="promise-body">We are producers of voices. The voice belongs to the author. The form is our work. We hold the standard. We remove what doesn't belong. We return the writer to themselves.</p>
-    <p class="promise-close">There is a form. The work carries it forward. The reader meets it on the page.</p>
+    <div class="cols">
+      <div>
+        <div class="eyebrow"><span class="no">№ 004</span> · The Promise</div>
+        <h2 class="headline">The author owns the voice. <em>We hold the form.</em></h2>
+        <p class="body-text">We are producers of voices. The voice belongs to the author. The form is our work. We hold the standard. We remove what doesn't belong. We return the writer to themselves.</p>
+        <p class="callout promise-close">There is a form. The work carries it forward. The reader meets it on the page.</p>
+      </div>
+      <div class="folio">004</div>
+    </div>
+  </section>
+
+  <!-- FROM THE PRESS -->
+  <section id="press">
+    <div class="cols">
+      <div>
+        <div class="eyebrow"><span class="no">№ 005</span> · From the Press</div>
+        <h2 class="headline">Proof, not promise.</h2>
+      </div>
+      <div class="folio">005</div>
+    </div>
+
+    <div class="press-entry">
+      <div>
+        <div class="press-status">At press</div>
+        <div class="press-title">Returning to Craft</div>
+        <div class="press-author">by Jeff Schaller</div>
+        <p class="press-desc">The studio's first title: the six functions every working business performs, and what it takes to run one with craft. Written, edited, and made here, one pass at a time. The mark at the top of this page is set at its spine foot.</p>
+      </div>
+      <div class="press-spec">
+        <div>Hardcover · 6 × 9 in · 287 pp</div>
+        <div>ISBN 979-8-950557-00-2</div>
+        <div>Cream paper · Matte case</div>
+        <div>First printing · MMXXVI</div>
+      </div>
+    </div>
   </section>
 
   <!-- SEND WORD -->
   <section id="begin" class="begin">
     <div class="begin-inner">
-      <div class="eyebrow">An invitation.</div>
+      <div class="eyebrow"><span class="no">№ 006</span> · Send Word</div>
       <h2 class="begin-prompt">Send word.</h2>
       <p class="begin-sub">Tell us why you came, what you're working on, or how we might help. We read everything.</p>
 
