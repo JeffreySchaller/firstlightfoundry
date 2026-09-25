@@ -333,7 +333,7 @@ for (const [i, p] of pieces.entries()) {
     <p class="ff-article__lead">${esc(p.standfirst)}</p>
     <p class="ff-article__byline ff-meta">${byline}</p>
   </header>
-  ${p.image ? `<figure class="ff-figure"><div class="ff-figure__frame"><img src="/${esc(p.image)}" alt="${esc(p.imageAlt || '')}" width="${p.imageWidth || 1600}" height="${p.imageHeight || 1067}" loading="lazy" decoding="async"></div>${p.imageCaption ? `<figcaption>${esc(p.imageCaption)}</figcaption>` : ''}</figure>` : ''}
+  ${p.image ? `<figure class="ff-figure${p.imagePortrait ? ' ff-figure--portrait' : ''}"><div class="ff-figure__frame"><img src="/${esc(p.image)}" alt="${esc(p.imageAlt || '')}" width="${p.imageWidth || 1600}" height="${p.imageHeight || 1067}" loading="lazy" decoding="async"></div>${p.imageCaption ? `<figcaption>${esc(p.imageCaption)}</figcaption>` : ''}</figure>` : ''}
   <div class="ff-article__body">
 ${bodyWithEnd}
   </div>

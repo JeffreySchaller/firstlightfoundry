@@ -116,3 +116,5 @@ h1, h2, h3 { font-family: var(--font-display); color: var(--text-primary); font-
 .source { max-width: var(--measure-text); margin: var(--space-7) auto 0; padding-top: var(--space-4); border-top: 1px solid var(--line-hairline); }
 .draft { max-width: var(--measure-text); margin: 0 auto var(--space-5); padding: var(--space-3) var(--space-4); border: 1px dashed var(--line-control); background: var(--surface-sunken); font-family: var(--font-mono); font-size: 13px; }
 .next { max-width: var(--measure-text); margin: var(--space-7) auto 0; }
+.ff-figure--portrait { max-width: 480px; }
+.ff-article .ff-figure { margin-top: 0; }
