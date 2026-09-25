@@ -52,6 +52,8 @@ for (const r of cfg.reading) {
   const body = raw.slice(m.index + m[0].length).trim();
   if (!r.approved && PROD) { warnings.push(`${r.slug}: not approved, excluded from the production build.`); continue; }
   const words = body.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+  if (meta.image && !fs.existsSync(path.join(SRC, meta.image))) { errors.push(`${r.slug}: image ${meta.image} not found under src/`); continue; }
+  if (meta.image && !meta.imageAlt) { errors.push(`${r.slug}: image needs imageAlt`); continue; }
   pieces.push({ ...meta, slug: r.slug, approved: !!r.approved, body, words, minutes: Math.max(1, Math.round(words / 230)) });
 }
 pieces.sort((a, b) => a.order - b.order);
@@ -331,6 +333,7 @@ for (const [i, p] of pieces.entries()) {
     <p class="ff-article__lead">${esc(p.standfirst)}</p>
     <p class="ff-article__byline ff-meta">${byline}</p>
   </header>
+  ${p.image ? `<figure class="ff-figure"><div class="ff-figure__frame"><img src="/${esc(p.image)}" alt="${esc(p.imageAlt || '')}" width="${p.imageWidth || 1600}" height="${p.imageHeight || 1067}" loading="lazy" decoding="async"></div>${p.imageCaption ? `<figcaption>${esc(p.imageCaption)}</figcaption>` : ''}</figure>` : ''}
   <div class="ff-article__body">
 ${bodyWithEnd}
   </div>
