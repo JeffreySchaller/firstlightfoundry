@@ -1,0 +1,8 @@
+# firstlightfoundry.com — build settings (added on branch prelaunch-v2).
+# Zero-dependency Node build; CONTEXT is set by Netlify (production | deploy-preview | branch-deploy).
+[build]
+  command = "node scripts/build.mjs"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
