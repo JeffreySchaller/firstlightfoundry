@@ -126,7 +126,7 @@ ${body}
   <div class="ff-footer__in">
     <div>
       <a class="ff-lockup" href="/" aria-label="Firstlight Foundry, home">${colophon(false)}<span class="ff-lockup__word">Firstlight Foundry</span></a>
-      <p class="ff-footer__motto">Built with AI. Curated by humans. Made to last.</p>
+      <p class="ff-footer__motto">Made in conversation. Made to last.</p>
     </div>
     <div class="ff-footer__cols">
       <div><h2>Read</h2><ul><li><a href="/reading/">Reading Room</a></li><li><a href="/reading/${firstExcerpt.slug}/">${esc(firstExcerpt.title)}</a></li></ul></div>
@@ -362,7 +362,7 @@ pages['/about/'] = layout({
   <p class="eyebrow">How a book is made here</p>
   <p>People and intelligent systems work on each book together, with the roles fixed. A person originates the idea, directs the work, decides what stays and signs for the result. Intelligent systems help develop the idea, argue with it from several sides and draft prose that the author then redirects until it sounds like the author.</p>
   <p>Nothing ships until a person has read it and decided it deserves to exist in physical form. The copyright page says plainly which tools were used. In <cite>${esc(B.title)}</cite>, that line reads: “Illustrations created with AI image tools under the author’s direction.”</p>
-  <p>The house motto says the same thing in six words: <em>Built with AI. Curated by humans. Made to last.</em></p>
+  <p>The house line says it in six words: <em>Made in conversation. Made to last.</em></p>
 </div></section>
 
 <section class="section"><div class="wrap measure">
