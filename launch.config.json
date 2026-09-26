@@ -1,0 +1,95 @@
+{
+  "$comment": "Single source of launch state for firstlightfoundry.com. The build (scripts/build.mjs) refuses any state it cannot verify. Never type a value here that you have not seen with your own eyes in KDP or on the live Amazon page.",
+  "state": "prelaunch",
+  "launchDate": {
+    "value": null,
+    "confirmedBy": null,
+    "$comment": "ISO date (YYYY-MM-DD). Set only when Jeff commits to T. Rendered on the site only when confirmedBy is filled."
+  },
+  "book": {
+    "title": "Returning to Craft",
+    "subtitle": "The Six Functions of a Thriving Business, and the One Where Your Next Growth Is Waiting",
+    "author": "Jeffrey Schaller",
+    "series": "The Six Functions",
+    "seriesNumber": "Book One",
+    "imprint": "Firstlight Foundry",
+    "catalogNumber": "No. 001",
+    "prelaunchStatus": "In final proof",
+    "coverImage": null,
+    "$coverComment": "Path under src/ to the APPROVED front-cover image. Leave null until the cover is final (Design System brief O1). The site shows no cover until then.",
+    "formats": [
+      {
+        "format": "Hardcover",
+        "isbn": "979-8-950557-00-2",
+        "isbnVerified": true,
+        "amazonUrl": null,
+        "asinVerifiedBy": null,
+        "asinVerifiedOn": null,
+        "price": null,
+        "pageCount": null
+      },
+      {
+        "format": "Paperback",
+        "isbn": "979-8-950557-01-9",
+        "isbnVerified": false,
+        "amazonUrl": null,
+        "asinVerifiedBy": null,
+        "asinVerifiedOn": null,
+        "price": null,
+        "pageCount": null
+      },
+      {
+        "format": "Kindle eBook",
+        "isbn": null,
+        "isbnVerified": false,
+        "amazonUrl": null,
+        "asinVerifiedBy": null,
+        "asinVerifiedOn": null,
+        "price": null,
+        "pageCount": null
+      }
+    ]
+  },
+  "channels": {
+    "youtube": {
+      "label": "YouTube",
+      "url": "https://www.youtube.com/@firstlightfoundry",
+      "verifiedOn": "2026-09-25",
+      "$comment": "Channel exists: Firstlight Foundry, @firstlightfoundry, id UCM00cZFiHDcPur0E-PwYqHw."
+    },
+    "instagram": {
+      "label": "Instagram",
+      "url": null,
+      "verifiedOn": null,
+      "$comment": "Handle not verified (Instagram blocks automated checks). Add the exact profile URL and today's date after opening it yourself."
+    },
+    "amazonAuthor": {
+      "label": "Amazon author page",
+      "url": null,
+      "verifiedOn": null
+    }
+  },
+  "notify": {
+    "enabled": true,
+    "formName": "launch-notice",
+    "promise": "One email when the book is on Amazon. Nothing else, and the address is not shared."
+  },
+  "reading": [
+    {
+      "slug": "sacred-rule",
+      "approved": true
+    },
+    {
+      "slug": "the-smallest-possible-business",
+      "approved": true
+    }
+  ],
+  "deferredReading": [
+    {
+      "slug": "the-doubling-question",
+      "status": "deferred from the initial launch (26 Sep, Jeff)",
+      "keptPrivatelyAt": "iCloud Projects/Firstlight-Foundry/Website_Launch_v2/drafts/the-doubling-question.html",
+      "$comment": "Not in this repository. To bring it back after approval: copy the file into src/content/reading/ and add {\"slug\": \"the-doubling-question\", \"approved\": true} to reading."
+    }
+  ]
+}

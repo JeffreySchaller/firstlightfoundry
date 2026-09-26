@@ -1,0 +1,119 @@
+/* Firstlight Foundry Design System v2.0 (September 2026). Generated from tokens.json. */
+
+:root,
+[data-theme="paper"] {
+  --ink: #1A1815;
+  --cream: #F4EEE2;
+  --ember: #B8472A;
+  --muted: #6B6359;
+  --paper: #FBF7EE;
+  --cream-deep: #EBE3D2;
+  --ink-soft: #2C2820;
+  --ember-soft: #C5604A;
+  --surface-page: var(--paper);
+  --surface-cream: var(--cream);
+  --surface-sunken: var(--cream-deep);
+  --surface-inverse: var(--ink);
+  --text-primary: #1A1815;
+  --text-secondary: #5E574E;
+  --text-muted: #6B6359;
+  --text-inverse: #F4EEE2;
+  --accent: #B8472A;
+  --accent-hover: #9C3B22;
+  --on-accent: #FBF7EE;
+  --line-hairline: rgba(26,24,21,0.18);
+  --line-control: #7F776C;
+  --line-strong: var(--ink);
+  --focus-ring: var(--accent);
+  --error: #8C2A1C;
+  --error-surface: #F7E6DE;
+  --success: #2E5A4C;
+  --warning: #7A5A10;
+  --fn-creation: #D4920B;
+  --fn-delivery: #1A5276;
+  --fn-capture: #1E8449;
+  --fn-demand: #C0392B;
+  --fn-coordination: #7F8C8D;
+  --fn-adaptation: #6C3483;
+  --shadow-none: none;
+  --shadow-rule: 0 1px 0 rgba(26,24,21,0.18);
+  --shadow-overlay: 0 12px 32px rgba(26,24,21,0.14);
+}
+
+[data-theme="ink"] {
+  --ink: #1A1815;
+  --cream: #F4EEE2;
+  --ember: #B8472A;
+  --muted: #6B6359;
+  --paper: #FBF7EE;
+  --cream-deep: #EBE3D2;
+  --ink-soft: #2C2820;
+  --ember-soft: #C5604A;
+  --surface-page: var(--ink);
+  --surface-cream: #24211C;
+  --surface-sunken: var(--ink-soft);
+  --surface-inverse: var(--cream);
+  --text-primary: #F4EEE2;
+  --text-secondary: #B5AB9C;
+  --text-muted: #A89F92;
+  --text-inverse: #1A1815;
+  --accent: #DB6E50;
+  --accent-hover: #E58A6E;
+  --on-accent: #1A1815;
+  --line-hairline: rgba(244,238,226,0.20);
+  --line-control: #8A8074;
+  --line-strong: var(--cream);
+  --focus-ring: var(--accent);
+  --error: #E2A08E;
+  --error-surface: #3A1F19;
+  --success: #8FC3B0;
+  --warning: #D9B25E;
+  --fn-creation: #D4920B;
+  --fn-delivery: #1A5276;
+  --fn-capture: #1E8449;
+  --fn-demand: #C0392B;
+  --fn-coordination: #7F8C8D;
+  --fn-adaptation: #6C3483;
+  --shadow-none: none;
+  --shadow-rule: 0 1px 0 rgba(244,238,226,0.20);
+  --shadow-overlay: 0 12px 32px rgba(0,0,0,0.50);
+}
+
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --gutter-sm: 20px;
+  --gutter-lg: 48px;
+  --radius-0: 0;
+  --radius-1: 2px;
+  --radius-dot: 50%;
+  --measure-text: 66ch;
+  --measure-narrow: 44ch;
+  --measure-caption: 52ch;
+  --measure-wide: 80ch;
+  --border-hairline: 1px;
+  --border-control: 1px;
+  --border-error: 2px;
+  --border-focus: 2px;
+  --focus-offset: 2px;
+  --border-rule-strong: 1px;
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1120px;
+  --container-max: 1200px;
+  --target-min: 44px;
+  --mark-min: 11px;
+  --mark-handover: 21px;
+  --font-display: Lora, Georgia, "Times New Roman", serif;
+  --font-text: Newsreader, Lora, Georgia, serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+  --font-figure: "Source Sans 3", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+}
