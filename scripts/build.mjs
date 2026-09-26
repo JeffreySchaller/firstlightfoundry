@@ -70,7 +70,7 @@ const slugOf = f => f.format.toLowerCase().replace(/[^a-z]+/g, '-').replace(/-+$
 // FF recut, display master paths from Firstlight_Mark_handoff.zip (ff-display-two-color.svg).
 const FF_PATHS = '<path d="M18 18 L52 18 L52 27 C40 27 33 26.5 29.5 30 L29.5 45 L44 45 L44 53 C37 53 32.5 52.8 29.5 56 L29.5 74 C29.5 78 32 78.6 37 79.6 L37 82 L10 82 L10 79.6 C15 78.6 18 78 18 74 Z"/><path d="M52 18 L85 18 L85 27 C73 27 67 26.5 63.5 30 L63.5 45 L77 45 L77 53 C70 53 66.5 52.8 63.5 56 L63.5 74 C63.5 78 66 78.6 71 79.6 L71 82 L44 82 L44 79.6 C49 78.6 52 78 52 74 Z"/>';
 const colophon = (ember = true) => `<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><g fill="currentColor">${FF_PATHS}</g><rect x="75" y="75" width="7" height="7" fill="${ember ? '#B8472A' : 'currentColor'}"/></svg>`;
-const hexagon = readFile(path.join(SRC, 'assets/img/six-functions-hexagon.svg'));
+const studio = `<figure class="studio"><img src="/assets/img/editorial/potters-studio.webp" width="1024" height="688" alt="An imagined potter’s studio: a clay bowl on a worn workbench, shelves of vessels, and a wheel beside the window." decoding="async" fetchpriority="high"><figcaption>A business, still small enough to see. <a href="/about/#image-note">Image note</a></figcaption></figure>`;
 
 const NAV = [
   { label: 'Reading Room', href: '/reading/' },
@@ -170,6 +170,13 @@ function rrList(list) {
   return `<ul class="rr">${list.map(p => `<li><a href="/reading/${p.slug}/"><span class="kind">${p.kind === 'excerpt' ? 'Excerpt' : 'Adapted'}<small>${esc(p.eyebrow.split('·')[1]?.trim() || '')} · ${p.minutes} min</small></span><span><span class="rr__title">${esc(p.title)}</span>${p.approved ? '' : ' <span class="meta">(draft, not in production)</span>'}<p class="rr__sf">${esc(p.standfirst)}</p></span></a></li>`).join('')}</ul>`;
 }
 
+function readingCards(level = 2) {
+  return `<div class="reading-cards">${pieces.map((p, i) => `<a class="reading-card" href="/reading/${p.slug}/">
+    <div class="reading-card__art">${p.image ? `<img src="/${esc(p.image)}" alt="" width="900" height="1200" loading="lazy" decoding="async">` : `<span class="reading-card__quote">“You have been<br>in this room.”</span><span class="reading-card__mark" aria-hidden="true">${colophon(false)}</span>`}</div>
+    <div class="reading-card__body"><p class="eyebrow">${esc(p.eyebrow)} · ${p.minutes} min</p><h${level}>${esc(p.title)}</h${level}><p>${esc(p.standfirst)}</p><span class="reading-card__link">Read the ${i === 0 ? 'Preface' : 'chapter'} <span aria-hidden="true">↗</span></span></div>
+  </a>`).join('')}</div>`;
+}
+
 const bookLD = {
   '@context': 'https://schema.org', '@type': 'Book', name: B.title, alternativeHeadline: B.subtitle,
   author: { '@type': 'Person', name: B.author }, publisher: { '@type': 'Organization', name: B.imprint, url: SITE },
@@ -183,38 +190,36 @@ const pages = {};
 
 pages['/'] = layout({
   title: 'Firstlight Foundry', pathname: '/',
-  description: `${B.title} by ${B.author}: the six functions every working business performs, the one constraint that limits them, and a diagnostic you can run on your own work. Read the Preface.`,
+  description: `For anyone who has felt that working harder is no longer enough. Read the Preface and a chapter of ${B.title} by ${B.author}, from Firstlight Foundry.`,
   jsonld: { '@context': 'https://schema.org', '@type': 'Organization', name: 'Firstlight Foundry', url: SITE, logo: `${SITE}/favicon.svg`, sameAs: channels.map(c => c.url) },
   body: `
-<section class="hero"><div class="wrap">
-  <p class="eyebrow">${esc(B.series)} · ${esc(B.seriesNumber)}</p>
-  <h1 class="hero__line">You have been in this room.</h1>
-  <p class="hero__attr">The first line of <cite>${esc(B.title)}</cite>, by ${esc(B.author)}</p>
-  <p class="lead">A quarterly review where every slide agrees and someone at the table goes quiet. The book starts there, and gives that quiet a name. It makes business legible: six functions every working business performs, one constraint that limits them, and a diagnostic you can run on your own work. Once you can see the structure, what you do next becomes a choice.</p>
-  <div class="actions">
-    <a class="ff-btn ff-btn--primary" href="/reading/${firstExcerpt.slug}/">Read an excerpt</a>
-    <a class="ff-btn ff-btn--quiet" href="/returning-to-craft/">About the book</a>
+<section class="hero home-opening"><div class="wrap">
+  <div class="edition-line"><span>Independent books · Firstlight Foundry</span><span>Our first title / No. 001</span></div>
+  <div class="opening-grid">
+    <div class="opening-copy">
+      <p class="eyebrow">A book by ${esc(B.author)}</p>
+      <h1 class="opening-title">Returning<br>to <em>Craft.</em></h1>
+      <p class="lead">The work grows. The effort grows.<br>Why does progress stop?</p>
+      <p class="opening-intro">Follow one potter’s studio as it grows, and learn to see what is happening in the business in front of you.</p>
+      <div class="actions"><a class="ff-btn ff-btn--primary" href="/reading/${firstExcerpt.slug}/">Begin reading</a><a class="ff-btn ff-btn--quiet" href="/returning-to-craft/">Explore the book <span aria-hidden="true">↗</span></a></div>
+    </div>
+    ${studio}
   </div>
+  <div class="opening-foot"><span>${esc(statusLine())}</span><a href="#reading-room">Stay a while. Read a little. <span aria-hidden="true">↓</span></a></div>
 </div></section>
 
-<section class="section section--cream"><div class="wrap">
-  <p class="eyebrow">What the book gives you</p>
-  <div class="model">
-    <figure class="model__device">${hexagon}<figcaption>The Six Functions series device. Six functions around one circulation.</figcaption></figure>
-    <ul class="ledger">
-      <li><h2 class="ledger__k">Six functions</h2><div><p class="ledger__v">Every business, from a potter at a weekend market to a company of thousands, performs the same six. When one person performs all six, the book calls it craft. When they scatter across a team and lose their names, they keep running anyway, unnamed and unowned.</p>
-        <ul class="fn-list" aria-label="The six functions"><li>Value Creation</li><li>Value Delivery</li><li>Value Capture</li><li>Demand Generation</li><li>Adaptation</li><li>Coordination</li></ul></div></li>
-      <li><h2 class="ledger__k">One constraint</h2><p class="ledger__v">At any moment one function is quietly limiting the other five. It is rarely the loudest problem in the room. The book shows you how to find it, and why feeding it does more than working harder everywhere else.</p></li>
-      <li><h2 class="ledger__k">A repeatable diagnostic</h2><p class="ledger__v">A method you can run in under an hour and run again when the business changes shape. The constraint moves as a business grows; the diagnostic moves with it.</p></li>
-    </ul>
-  </div>
+<section class="section recognition" data-theme="ink"><div class="wrap recognition-grid">
+  <div><p class="eyebrow">The book begins here</p><h2 class="recognition__quote">“You have been<br>in this room.”</h2><p class="meta">The opening line · ${esc(B.title)}</p></div>
+  <div class="recognition__text"><p>A quarterly review where every slide agrees and someone at the table goes quiet. The work is familiar. The feeling that something is wrong is familiar, too.</p><p>This book stays with that feeling. Through a potter’s studio and the businesses it helps you see, an explanation takes shape. You come to understand why effort can fail to become progress, and where your attention could make a difference.</p><a class="text-link" href="/reading/${firstExcerpt.slug}/">Read the Preface <span aria-hidden="true">↗</span></a></div>
 </div></section>
 
-<section class="section"><div class="wrap">
-  <p class="eyebrow">The Reading Room</p>
-  <h2 class="h-section">Read before anything else.</h2>
-  <p class="lead narrow">Longer passages from the book, set for reading on a screen. Each one says where it comes from.</p>
-  ${rrList(pieces)}
+<section class="section" id="reading-room"><div class="wrap">
+  <div class="section-heading"><div><p class="eyebrow">The Reading Room</p><h2 class="h-section">A few pages.<br>A different way of seeing.</h2></div><p class="lead">Understanding takes time with an idea. Start here, with two passages from the book. No sign-up needed.</p></div>
+  ${readingCards(3)}
+</div></section>
+
+<section class="section section--cream"><div class="wrap slow-reading">
+  <p class="eyebrow">Why a book</p><div><h2 class="h-section">Some ideas need<br>room to become yours.</h2><p class="lead">A name means little until you understand what it names.</p><p>In <cite>Returning to Craft</cite>, you watch the work happen before the language arrives. One scene builds on another. The connections become visible. By the time you have a name for what is happening, you have a reason to use it.</p><p>That is what the book asks of your time, and what it hopes to give back: understanding you can carry into your own work.</p></div>
 </div></section>
 
 <section class="section section--cream"><div class="wrap">
@@ -245,12 +250,12 @@ pages['/'] = layout({
 
 // Book page
 const TOC = [
-  ['Part I · The Inheritance', 'The Inheritance · The Inflection · The Systems Integrator'],
-  ['Part II · The Six Functions', 'The Six Functions · Value Creation · Value Delivery · Value Capture · Demand Generation · Coordination · Adaptation'],
-  ['Part III · The Circulation', 'The Circulation · The Two Triads · The Constraint'],
-  ['Part IV · The Human Layer', 'Six Archetypes for Six Functions · The Founder’s Blind Spot · Triangulation · The Fourth Satellite'],
-  ['Part V · The Diagnostic', 'The Constraint Audit · The Pattern at Every Scale'],
-  ['Appendix', 'The Convergence Table'],
+  ['Part I · The Inheritance', 'Why the structures we inherit can feel like the only way to work.', 'The Inheritance · The Inflection · The Systems Integrator'],
+  ['Part II · The Six Functions', 'Watch the potter do the work, then come to understand what each part makes possible.', 'The Six Functions · Value Creation · Value Delivery · Value Capture · Demand Generation · Coordination · Adaptation'],
+  ['Part III · The Circulation', 'See the relationships between the functions, and how one can limit the rest.', 'The Circulation · The Two Triads · The Constraint'],
+  ['Part IV · The Human Layer', 'Consider the people doing the work, and what each is suited to see.', 'Six Archetypes for Six Functions · The Founder’s Blind Spot · Triangulation · The Fourth Satellite'],
+  ['Part V · The Diagnostic', 'Bring the understanding you have built to the business in front of you.', 'The Constraint Audit · The Pattern at Every Scale'],
+  ['Appendix', 'The traditions that meet in the framework.', 'The Convergence Table'],
 ];
 pages['/returning-to-craft/'] = layout({
   title: B.title, pathname: '/returning-to-craft/', ogType: 'book', jsonld: bookLD,
@@ -266,7 +271,7 @@ pages['/returning-to-craft/'] = layout({
       <div class="actions">${launched ? buyBlock(true) : `<a class="ff-btn ff-btn--primary" href="/reading/${firstExcerpt.slug}/">Read an excerpt</a>`}</div>
     </div>
     <div>
-      ${B.coverImage ? `<img src="/${esc(B.coverImage)}" alt="Front cover of ${esc(B.title)} by ${esc(B.author)}" width="600" height="900">` : ''}
+      ${B.coverImage ? `<img src="/${esc(B.coverImage)}" alt="Front cover of ${esc(B.title)} by ${esc(B.author)}" width="600" height="900">` : studio}
       <dl class="facts"><dt>Status</dt><dd>${esc(statusLine())}</dd><dt>Publisher</dt><dd>${esc(B.imprint)}</dd>${B.formats.filter(f => f.isbnVerified).map(f => `<dt>${esc(f.format)}</dt><dd>ISBN ${esc(f.isbn)}</dd>`).join('')}</dl>
     </div>
   </div>
@@ -276,29 +281,19 @@ pages['/returning-to-craft/'] = layout({
   <p class="eyebrow">Who it is for</p>
   <div class="measure">
     <p class="lead">For the capable professional who has sat through the meeting where the slides all agree and nothing moves, and has wondered whether there is another way to work. And for the founder who is working hard while something unnamed holds the business below what it could be.</p>
-    <p>Business is not a gift some people are born with. Every working business, from a potter's kitchen table to a large company, performs the same six functions, and the one that limits the system can be found and fed. Once you can see that structure, working inside a company becomes a choice rather than a default, and running your own becomes something you can reason about.</p>
-  </div>
-</div></section>
-
-<section class="section"><div class="wrap">
-  <p class="eyebrow">From the jacket</p>
-  <div class="measure jacket">
-    <p>There is a moment every founder knows. The work that once fit in your two hands has grown into something you can no longer see all at once, and the harder you push, the less the effort seems to move.</p>
-    <p>Every business, from a potter selling her first mugs at a weekend market to a company of five hundred, runs on the same six functions: Creation, Delivery, Demand Generation, Value Capture, Coordination, and Adaptation. When one person performs all six, we call it craft. When they scatter across a growing team and lose their names, they keep operating anyway, unnamed and unowned, and the six begin to work against each other in the dark.</p>
-    <p>Through the story of one potter’s studio as it grows, this book teaches you to see all six functions in your own business, find the one that is quietly limiting the other five, and aim your next season of effort where the growth is actually waiting.</p>
-    <p class="coda">You do not need a bigger plan.<br>You need to see the machine you already built.</p>
+    <p>The story begins at a scale you can hold in mind: one potter, doing the work herself. As her studio grows, the relationships inside the business become easier to see. The book gives you time to understand those relationships, then brings that understanding back to the choices in your own work.</p>
   </div>
 </div></section>
 
 <section class="section section--cream"><div class="wrap">
   <p class="eyebrow">What is inside</p>
   <h2 class="h-section">Five parts, nineteen chapters.</h2>
-  <ul class="toc">${TOC.map(([k, v]) => `<li><h3>${esc(k)}</h3><p>${esc(v)}</p></li>`).join('')}</ul>
+  <ul class="toc">${TOC.map(([k, why, v]) => `<li><h3>${esc(k)}</h3><div><p>${esc(why)}</p><p class="toc__chapters">${esc(v)}</p></div></li>`).join('')}</ul>
 </div></section>
 
 <section class="section"><div class="wrap">
   <p class="eyebrow">Read before you decide</p>
-  ${rrList(pieces)}
+  ${readingCards()}
   ${launched ? '' : `<div style="margin-top: var(--space-8)"><h2 class="h-section" style="font-size: 27px">Hear when it is on Amazon</h2>${notifyForm('email-book')}</div>`}
 </div></section>`,
 });
@@ -311,8 +306,8 @@ pages['/reading/'] = layout({
 <section class="hero"><div class="wrap">
   <p class="eyebrow">The Reading Room</p>
   <h1 class="h-section">Sit down with the book.</h1>
-  <p class="lead narrow">Excerpts are the book's own text, unchanged. Adapted pieces are new writing drawn from a chapter, and they say so at the top.</p>
-  ${rrList(pieces)}
+  <p class="lead narrow">A place to spend time with an idea. These two passages are the book’s own text, unchanged. Begin with the Preface, or step into the potter’s studio.</p>
+  ${readingCards()}
 </div></section>`,
 });
 
@@ -373,6 +368,7 @@ pages['/about/'] = layout({
   <p class="eyebrow">What counts as a book</p>
   <p>A book is “a bounded vessel that allows one mind to receive the structured thinking of another mind, across distance and time, in solitude.” Every title the house publishes has to meet that test: bounded, persistent, readable by one person alone, pattern-carrying and solitude-enabling. A manuscript that does not meet it is not published, however good the prose.</p>
   <p class="small">From the house’s founding note, <cite>What Is a Book?</cite></p>
+  <p class="small" id="image-note">The studio scene on this website was created with Higgsfield under editorial direction. It is an imagined setting, not a photograph of the author’s studio. The Chapter Four illustration is from the book.</p>
 </div></section>
 
 <section class="section section--cream" id="send-word"><div class="wrap">
