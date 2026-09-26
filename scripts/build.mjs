@@ -70,12 +70,13 @@ const slugOf = f => f.format.toLowerCase().replace(/[^a-z]+/g, '-').replace(/-+$
 // FF recut, display master paths from Firstlight_Mark_handoff.zip (ff-display-two-color.svg).
 const FF_PATHS = '<path d="M18 18 L52 18 L52 27 C40 27 33 26.5 29.5 30 L29.5 45 L44 45 L44 53 C37 53 32.5 52.8 29.5 56 L29.5 74 C29.5 78 32 78.6 37 79.6 L37 82 L10 82 L10 79.6 C15 78.6 18 78 18 74 Z"/><path d="M52 18 L85 18 L85 27 C73 27 67 26.5 63.5 30 L63.5 45 L77 45 L77 53 C70 53 66.5 52.8 63.5 56 L63.5 74 C63.5 78 66 78.6 71 79.6 L71 82 L44 82 L44 79.6 C49 78.6 52 78 52 74 Z"/>';
 const colophon = (ember = true) => `<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><g fill="currentColor">${FF_PATHS}</g><rect x="75" y="75" width="7" height="7" fill="${ember ? '#B8472A' : 'currentColor'}"/></svg>`;
-const studio = `<figure class="studio"><img src="/assets/img/editorial/potters-studio.webp" width="1024" height="688" alt="An imagined potter’s studio: a clay bowl on a worn workbench, shelves of vessels, and a wheel beside the window." decoding="async" fetchpriority="high"><figcaption>A business, still small enough to see. <a href="/about/#image-note">Image note</a></figcaption></figure>`;
+const businessQuestions = `<aside class="business-questions" aria-label="Questions the book helps you work through"><p class="eyebrow">The decisions in front of you</p><p>Where is the work getting stuck?</p><p>What needs your attention first?</p><p>What would make the next effort count?</p><span class="meta">Returning to Craft · ${esc(B.seriesNumber)}</span></aside>`;
 
 const NAV = [
   { label: 'Reading Room', href: '/reading/' },
   { label: 'The book', href: '/returning-to-craft/' },
   { label: 'About', href: '/about/' },
+  { label: 'Start a conversation', href: '/about/#send-word' },
 ];
 
 function layout({ title, description, pathname, body, ogType = 'website', jsonld = null }) {
@@ -190,27 +191,38 @@ const pages = {};
 
 pages['/'] = layout({
   title: 'Firstlight Foundry', pathname: '/',
-  description: `For anyone who has felt that working harder is no longer enough. Read the Preface and a chapter of ${B.title} by ${B.author}, from Firstlight Foundry.`,
+  description: `Firstlight Foundry is a small studio shaping voices into form. We work with one author at a time to make books from ideas, experience and a voice worth hearing. Meet the studio and explore our first title, ${B.title}.`,
   jsonld: { '@context': 'https://schema.org', '@type': 'Organization', name: 'Firstlight Foundry', url: SITE, logo: `${SITE}/favicon.svg`, sameAs: channels.map(c => c.url) },
   body: `
-<section class="hero home-opening"><div class="wrap">
-  <div class="edition-line"><span>Independent books · Firstlight Foundry</span><span>Our first title / No. 001</span></div>
+<section class="hero company-opening"><div class="wrap">
+  <div class="edition-line"><span>Firstlight Foundry · A small studio</span><span>Est. MMXXVI</span></div>
+  <div class="company-intro">
+    <div><p class="eyebrow">Voices that deserve form.</p><h1>A small studio<br>shaping voices<br>into <em>form.</em></h1></div>
+    <div class="company-intro__text"><p class="lead">You have something worth saying. A lifetime of practice. An idea you keep returning to. A way of seeing that could help someone else.</p><p>Firstlight Foundry works with one author at a time to bring that thinking into a book. We help develop the ideas, shape the manuscript and hold it to the standard of a lasting work.</p><p class="company-promise">The author owns the voice.<br><em>We hold the form.</em></p><div class="actions"><a class="ff-btn ff-btn--primary" href="/about/#send-word">Start a conversation</a><a class="ff-btn ff-btn--quiet" href="/about/">Meet the studio <span aria-hidden="true">↗</span></a></div></div>
+  </div>
+  <div class="opening-foot"><span>Made in conversation. Made to last.</span><a href="#from-the-press">Explore our first book <span aria-hidden="true">↓</span></a></div>
+</div></section>
+
+<section class="section company-work"><div class="wrap slow-reading"><div><p class="eyebrow">The work</p><p class="company-folio" aria-hidden="true">01</p></div><div><h2 class="h-section">What you know deserves<br>the time to take shape.</h2><p class="lead">Some people think best in conversation. Others have spent years doing the work, with little time to write about it.</p><p>We begin with what you know and what you want a reader to understand. Together, we question it, find its structure and work on the language until the book carries your thinking in your voice.</p><p>Whether you have a manuscript, an idea that is ready to become one, or an interest in what we are building, we would like to hear from you.</p><a class="text-link" href="/about/#send-word">Tell us what you are working on <span aria-hidden="true">↗</span></a></div></div></section>
+
+<section class="section home-opening" id="from-the-press"><div class="wrap">
+  <div class="edition-line"><span>From the press</span><span>Our first title / No. 001</span></div>
   <div class="opening-grid">
     <div class="opening-copy">
       <p class="eyebrow">A book by ${esc(B.author)}</p>
-      <h1 class="opening-title">Returning<br>to <em>Craft.</em></h1>
-      <p class="lead">The work grows. The effort grows.<br>Why does progress stop?</p>
-      <p class="opening-intro">Follow one potter’s studio as it grows, and learn to see what is happening in the business in front of you.</p>
+      <h2 class="opening-title">Returning<br>to <em>Craft.</em></h2>
+      <p class="lead">Understand what is holding your business back. Decide where to focus next.</p>
+      <p class="opening-intro">When good people work hard and progress still stalls, more effort is not much of an answer. This book helps you see how the work fits together, identify what is limiting it, and reason through what to do next.</p>
       <div class="actions"><a class="ff-btn ff-btn--primary" href="/reading/${firstExcerpt.slug}/">Begin reading</a><a class="ff-btn ff-btn--quiet" href="/returning-to-craft/">Explore the book <span aria-hidden="true">↗</span></a></div>
     </div>
-    ${studio}
+    ${businessQuestions}
   </div>
-  <div class="opening-foot"><span>${esc(statusLine())}</span><a href="#reading-room">Stay a while. Read a little. <span aria-hidden="true">↓</span></a></div>
+  <div class="opening-foot"><span>${esc(statusLine())}</span><a href="#reading-room">Read an excerpt <span aria-hidden="true">↓</span></a></div>
 </div></section>
 
 <section class="section recognition" data-theme="ink"><div class="wrap recognition-grid">
   <div><p class="eyebrow">The book begins here</p><h2 class="recognition__quote">“You have been<br>in this room.”</h2><p class="meta">The opening line · ${esc(B.title)}</p></div>
-  <div class="recognition__text"><p>A quarterly review where every slide agrees and someone at the table goes quiet. The work is familiar. The feeling that something is wrong is familiar, too.</p><p>This book stays with that feeling. Through a potter’s studio and the businesses it helps you see, an explanation takes shape. You come to understand why effort can fail to become progress, and where your attention could make a difference.</p><a class="text-link" href="/reading/${firstExcerpt.slug}/">Read the Preface <span aria-hidden="true">↗</span></a></div>
+  <div class="recognition__text"><p>A quarterly review where every slide agrees and someone at the table goes quiet. The work is familiar. The feeling that something is wrong is familiar, too.</p><p>You need to understand why the effort is not translating into progress. The book builds a way to see the relationships behind the results, distinguish a symptom from a constraint, and choose where to direct your attention.</p><a class="text-link" href="/reading/${firstExcerpt.slug}/">Read the Preface <span aria-hidden="true">↗</span></a></div>
 </div></section>
 
 <section class="section" id="reading-room"><div class="wrap">
@@ -251,7 +263,7 @@ pages['/'] = layout({
 // Book page
 const TOC = [
   ['Part I · The Inheritance', 'Why the structures we inherit can feel like the only way to work.', 'The Inheritance · The Inflection · The Systems Integrator'],
-  ['Part II · The Six Functions', 'Watch the potter do the work, then come to understand what each part makes possible.', 'The Six Functions · Value Creation · Value Delivery · Value Capture · Demand Generation · Coordination · Adaptation'],
+  ['Part II · The Six Functions', 'Understand the work every business must perform, and why each part matters.', 'The Six Functions · Value Creation · Value Delivery · Value Capture · Demand Generation · Coordination · Adaptation'],
   ['Part III · The Circulation', 'See the relationships between the functions, and how one can limit the rest.', 'The Circulation · The Two Triads · The Constraint'],
   ['Part IV · The Human Layer', 'Consider the people doing the work, and what each is suited to see.', 'Six Archetypes for Six Functions · The Founder’s Blind Spot · Triangulation · The Fourth Satellite'],
   ['Part V · The Diagnostic', 'Bring the understanding you have built to the business in front of you.', 'The Constraint Audit · The Pattern at Every Scale'],
@@ -271,7 +283,7 @@ pages['/returning-to-craft/'] = layout({
       <div class="actions">${launched ? buyBlock(true) : `<a class="ff-btn ff-btn--primary" href="/reading/${firstExcerpt.slug}/">Read an excerpt</a>`}</div>
     </div>
     <div>
-      ${B.coverImage ? `<img src="/${esc(B.coverImage)}" alt="Front cover of ${esc(B.title)} by ${esc(B.author)}" width="600" height="900">` : studio}
+      ${B.coverImage ? `<img src="/${esc(B.coverImage)}" alt="Front cover of ${esc(B.title)} by ${esc(B.author)}" width="600" height="900">` : businessQuestions}
       <dl class="facts"><dt>Status</dt><dd>${esc(statusLine())}</dd><dt>Publisher</dt><dd>${esc(B.imprint)}</dd>${B.formats.filter(f => f.isbnVerified).map(f => `<dt>${esc(f.format)}</dt><dd>ISBN ${esc(f.isbn)}</dd>`).join('')}</dl>
     </div>
   </div>
@@ -281,7 +293,7 @@ pages['/returning-to-craft/'] = layout({
   <p class="eyebrow">Who it is for</p>
   <div class="measure">
     <p class="lead">For the capable professional who has sat through the meeting where the slides all agree and nothing moves, and has wondered whether there is another way to work. And for the founder who is working hard while something unnamed holds the business below what it could be.</p>
-    <p>The story begins at a scale you can hold in mind: one potter, doing the work herself. As her studio grows, the relationships inside the business become easier to see. The book gives you time to understand those relationships, then brings that understanding back to the choices in your own work.</p>
+    <p>You may be deciding where to invest, what to change, or whether to build something of your own. The book helps you understand the business as a whole, so you can judge what is actually limiting progress before committing more time, money or effort. It develops that understanding step by step, through situations you can examine and carry back to your own work.</p>
   </div>
 </div></section>
 
@@ -306,7 +318,7 @@ pages['/reading/'] = layout({
 <section class="hero"><div class="wrap">
   <p class="eyebrow">The Reading Room</p>
   <h1 class="h-section">Sit down with the book.</h1>
-  <p class="lead narrow">A place to spend time with an idea. These two passages are the book’s own text, unchanged. Begin with the Preface, or step into the potter’s studio.</p>
+  <p class="lead narrow">A place to spend time with an idea. These two passages are the book’s own text, unchanged. Begin with a familiar problem in the Preface, or see the business at its simplest in Chapter Four.</p>
   ${readingCards()}
 </div></section>`,
 });
@@ -351,7 +363,7 @@ pages['/about/'] = layout({
 <section class="hero"><div class="wrap measure">
   <p class="eyebrow">About the house</p>
   <h1 class="h-section">A small studio shaping voices into form.</h1>
-  <p class="lead">Firstlight Foundry publishes books that make structure visible: things named clearly enough that choosing becomes real. The first is <cite>${esc(B.title)}</cite>.</p>
+  <p class="lead">We work with one author at a time to bring ideas and experience into books. The author owns the voice. We hold the form.</p><p>Our work begins with what you want someone else to understand. We help develop the thinking, shape the manuscript and prepare a book that can carry it. Our first title is <cite>${esc(B.title)}</cite>.</p><div class="actions"><a class="ff-btn ff-btn--primary" href="#send-word">Start a conversation</a></div>
 </div></section>
 
 <section class="section section--cream"><div class="wrap measure">
@@ -368,14 +380,14 @@ pages['/about/'] = layout({
   <p class="eyebrow">What counts as a book</p>
   <p>A book is “a bounded vessel that allows one mind to receive the structured thinking of another mind, across distance and time, in solitude.” Every title the house publishes has to meet that test: bounded, persistent, readable by one person alone, pattern-carrying and solitude-enabling. A manuscript that does not meet it is not published, however good the prose.</p>
   <p class="small">From the house’s founding note, <cite>What Is a Book?</cite></p>
-  <p class="small" id="image-note">The studio scene on this website was created with Higgsfield under editorial direction. It is an imagined setting, not a photograph of the author’s studio. The Chapter Four illustration is from the book.</p>
+  <p class="small" id="image-note">The Chapter Four illustration is from the book. Illustrations were created with AI image tools under the author’s direction.</p>
 </div></section>
 
 <section class="section section--cream" id="send-word"><div class="wrap">
   <div class="measure">
     <p class="eyebrow">Send word</p>
-    <h2 class="h-section">Write to the house.</h2>
-    <p>Readers, reviewers and authors with a book in them: tell us why you came, what you are working on, or how we might help. We read everything.</p>
+    <h2 class="h-section">What are you working on?</h2>
+    <p>Have an idea for a book, a manuscript in progress, or a question about working with Firstlight Foundry? Tell us a little about it and what you would like to explore together. If you are simply interested in what we are building, you are welcome here too. A person reads every note.</p>
   </div>
   <form name="send-word" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" style="display:grid; gap: var(--space-5); max-width: 560px; margin-top: var(--space-6)">
     <input type="hidden" name="form-name" value="send-word">

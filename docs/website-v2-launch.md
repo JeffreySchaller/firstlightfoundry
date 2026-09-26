@@ -25,3 +25,11 @@ The launch-notice form promises one email when the book is available. The launch
 ## Rollback
 
 Previous production Netlify deploy: 6aac1b10b3c24700080ba06f (main 1f469e0). Republish that deployment if needed. Git-linked production builds receive CONTEXT=production automatically; local production builds must set it explicitly.
+
+## Company-first revision — September 25
+
+The homepage now introduces Firstlight Foundry before its first title. Restores V1's studio positioning (one author at a time; the author owns the voice, the studio holds the form), adds prominent conversation links, and explains the work for prospective authors/clients. About and the contact invitation follow the same direction.
+
+Returning to Craft now leads with the business reader's decisions: understand what is limiting progress and decide where to focus. The generated pottery scene is no longer displayed. The original Chapter Four illustration stays with the reading entry/excerpt; manuscript text remains unchanged. Homepage metadata describes the company.
+
+Validation: all nine pages build, internal links and contact anchor pass, desktop/768px/390px layouts checked, contact link opens the existing form. Form names/fields and Amazon launch gate are unchanged.
