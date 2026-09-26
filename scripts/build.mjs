@@ -236,7 +236,8 @@ pages['/'] = layout({
 <section class="section"><div class="wrap">
   <p class="eyebrow">How this house works</p>
   <div class="measure">
-    <p>Firstlight Foundry is a small independent press. A person authors, directs and signs for every book it publishes. Intelligent systems help develop the ideas, argue with them and draft, and a person decides what ships.</p>
+    <p>The best tools open new doorways into authorship. They can hold the patterns that good books and stories run on, so people with something true to say can work where it matters, whether or not they have trained as writers. The aim is a book that helps people in the work and lives they actually have.</p>
+    <p>The roles are fixed. A person authors, directs and signs for every book the house publishes. Intelligent systems help develop the ideas, argue with them and draft, and a person decides what ships.</p>
     <p><a href="/about/">How a book is made here</a></p>
   </div>
 </div></section>`,
@@ -360,11 +361,11 @@ pages['/about/'] = layout({
 
 <section class="section section--cream"><div class="wrap measure">
   <p class="eyebrow">How a book is made here</p>
-  <p>The best tools open new doorways into authorship. Every lasting book and story runs on patterns: how an argument builds, how a scene turns, how an idea earns its place. For a long time only trained writers could hold those patterns and work inside them, so much of what people knew never reached a page.</p>
+  <p>The best tools open new doorways into authorship. Every lasting book and story runs on patterns: how an argument builds, how a scene turns, how an idea earns its place. Those patterns were often easier to access for people with writing training, formal or self-taught, so much of what other people knew never reached a page.</p>
   <p>The best tools now hold those patterns too. That lets an author begin from what they know, a lifetime building a business, a way of seeing people, a story carried for years, and spend their effort where the truth of it lives, at the depth where a reader feels it. A writer’s mind is one way to think about life. There are many others, and they deserve books too.</p>
   <p>What matters is the artifact: a book that helps someone see the business in front of them, a story that moves someone and stays with them. Made well, tested hard, built to last.</p>
   <p>The roles are fixed. A person originates the idea, directs the work, decides what stays and signs for the result. Intelligent systems help develop the idea, argue with it from several sides and draft prose that the author redirects until it sounds like the author.</p>
-  <p>Nothing ships until a person has read it and decided it deserves to exist in physical form. The copyright page says plainly which tools were used. In <cite>${esc(B.title)}</cite>, that line reads: “Illustrations created with AI image tools under the author’s direction.”</p>
+  <p>Nothing ships until a person has read it and decided it deserves to exist in physical form. The copyright page of <cite>${esc(B.title)}</cite> carries a disclosure for its illustrations: “Illustrations created with AI image tools under the author’s direction.” That line covers the artwork only. The prose was developed in the way described above.</p>
   <p>The house line says it in six words: <em>Made in conversation. Made to last.</em></p>
 </div></section>
 
