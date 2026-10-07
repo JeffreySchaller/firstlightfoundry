@@ -109,6 +109,7 @@ ${PROD ? '' : '<meta name="robots" content="noindex, nofollow">\n'}<link rel="ca
 <link rel="stylesheet" href="/assets/css/tokens.css">
 <link rel="stylesheet" href="/assets/css/components.css">
 <link rel="stylesheet" href="/assets/css/site.css">
+<script defer src="/assets/js/campaign-source.js"></script>
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ''}
 </head>
 <body class="ff-root">
