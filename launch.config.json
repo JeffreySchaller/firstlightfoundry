@@ -1,9 +1,9 @@
 {
   "$comment": "Single source of launch state for firstlightfoundry.com. The build (scripts/build.mjs) refuses any state it cannot verify. Never type a value here that you have not seen with your own eyes in KDP or on the live Amazon page.",
-  "state": "prelaunch",
+  "state": "launched",
   "launchDate": {
-    "value": null,
-    "confirmedBy": null,
+    "value": "2026-10-01",
+    "confirmedBy": "Claude (Cowork) from the KDP Bookshelf and live Amazon pages, 1 Oct 2026",
     "$comment": "ISO date (YYYY-MM-DD). Set only when Jeff commits to T. Rendered on the site only when confirmedBy is filled."
   },
   "book": {
@@ -14,38 +14,38 @@
     "seriesNumber": "Book One",
     "imprint": "Firstlight Foundry",
     "catalogNumber": "No. 001",
-    "prelaunchStatus": "In final proof",
-    "coverImage": null,
+    "prelaunchStatus": "Available on Amazon",
+    "coverImage": "assets/img/cover/returning-to-craft.webp",
     "$coverComment": "Path under src/ to the APPROVED front-cover image. Leave null until the cover is final (Design System brief O1). The site shows no cover until then.",
     "formats": [
       {
         "format": "Hardcover",
         "isbn": "979-8-950557-00-2",
         "isbnVerified": true,
-        "amazonUrl": null,
-        "asinVerifiedBy": null,
-        "asinVerifiedOn": null,
-        "price": null,
+        "amazonUrl": "https://www.amazon.com/dp/B0HLP618FK",
+        "asinVerifiedBy": "Claude (Cowork), live Amazon page and KDP Bookshelf",
+        "asinVerifiedOn": "2026-10-07",
+        "price": "$27.99",
         "pageCount": null
       },
       {
         "format": "Paperback",
         "isbn": "979-8-950557-01-9",
         "isbnVerified": false,
-        "amazonUrl": null,
-        "asinVerifiedBy": null,
-        "asinVerifiedOn": null,
-        "price": null,
+        "amazonUrl": "https://www.amazon.com/dp/B0HLPKTJPF",
+        "asinVerifiedBy": "Claude (Cowork), live Amazon page and KDP Bookshelf",
+        "asinVerifiedOn": "2026-10-07",
+        "price": "$18.99",
         "pageCount": null
       },
       {
         "format": "Kindle eBook",
         "isbn": null,
         "isbnVerified": false,
-        "amazonUrl": null,
-        "asinVerifiedBy": null,
-        "asinVerifiedOn": null,
-        "price": null,
+        "amazonUrl": "https://www.amazon.com/dp/B0HLPFQF2K",
+        "asinVerifiedBy": "Claude (Cowork), live Amazon page and KDP Bookshelf",
+        "asinVerifiedOn": "2026-10-07",
+        "price": "$9.99",
         "pageCount": null
       }
     ]
