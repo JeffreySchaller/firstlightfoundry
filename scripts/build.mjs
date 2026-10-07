@@ -211,8 +211,8 @@ pages['/'] = layout({
     <div class="opening-copy">
       <p class="eyebrow">A book by ${esc(B.author)}</p>
       <h2 class="opening-title">Returning<br>to <em>Craft.</em></h2>
-      <p class="lead">Understand what is holding your business back. Decide where to focus next.</p>
-      <p class="opening-intro">When good people work hard and progress still stalls, more effort is not much of an answer. This book helps you see how the work fits together, identify what is limiting it, and reason through what to do next.</p>
+      <p class="lead">Your business is growing. Why does moving it forward keep getting harder?</p>
+      <p class="opening-intro">More decisions come back to you. Priorities compete. Your team works hard, yet the same problems return. <cite>Returning to Craft</cite> helps you understand how the work fits together, recognize what is holding progress back, and decide where your next effort belongs.</p>
       <div class="actions"><a class="ff-btn ff-btn--primary" href="/reading/${firstExcerpt.slug}/">Begin reading</a><a class="ff-btn ff-btn--quiet" href="/returning-to-craft/">Explore the book <span aria-hidden="true">↗</span></a></div>
     </div>
     ${businessQuestions}
@@ -271,7 +271,7 @@ const TOC = [
 ];
 pages['/returning-to-craft/'] = layout({
   title: B.title, pathname: '/returning-to-craft/', ogType: 'book', jsonld: bookLD,
-  description: `${B.title}: ${B.subtitle}. By ${B.author}. ${B.series}, ${B.seriesNumber}.`,
+  description: `Your business is growing. Why does moving it forward keep getting harder? ${B.title} helps you understand how the work fits together, recognize what is holding progress back, and decide where your next effort belongs. By ${B.author}.`,
   body: `
 <section class="hero"><div class="wrap">
   <div class="book">
@@ -292,8 +292,8 @@ pages['/returning-to-craft/'] = layout({
 <section class="section section--cream"><div class="wrap">
   <p class="eyebrow">Who it is for</p>
   <div class="measure">
-    <p class="lead">For the capable professional who has sat through the meeting where the slides all agree and nothing moves, and has wondered whether there is another way to work. And for the founder who is working hard while something unnamed holds the business below what it could be.</p>
-    <p>You may be deciding where to invest, what to change, or whether to build something of your own. The book helps you understand the business as a whole, so you can judge what is actually limiting progress before committing more time, money or effort. It develops that understanding step by step, through situations you can examine and carry back to your own work.</p>
+    <p class="lead">Your business is growing. Why does moving it forward keep getting harder? More decisions come back to you. Priorities compete. Your team works hard, yet the same problems return.</p>
+    <p><cite>Returning to Craft</cite> helps you understand how the work fits together, recognize what is holding progress back, and decide where your next effort belongs. It develops that understanding step by step, through situations you can examine and carry back to your own work. For people building a business, and people responsible for making one work.</p>
   </div>
 </div></section>
 
