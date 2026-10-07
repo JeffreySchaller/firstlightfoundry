@@ -7,7 +7,7 @@
   const tags = {
     '/go/amazon-hardcover/': 'https://www.amazon.com/dp/B0HLP618FK?maas=maas_adg_E6B17754A3D37C10A5715C39CA56D299_afap_abs&ref_=aa_maas&tag=maas',
     '/go/amazon-paperback/': 'https://www.amazon.com/dp/B0HLPKTJPF?maas=maas_adg_55BE2A895442F6A3E15381C0EEA0B5BA_afap_abs&ref_=aa_maas&tag=maas',
-    '/go/amazon-kindle/': 'https://www.amazon.com/dp/B0HLPFQF2K?maas=maas_adg_940E9614BE2DEA995CFE862A0EFCF8FB_afap_abs&ref_=aa_maas&tag=maas'
+    '/go/amazon-kindle-ebook/': 'https://www.amazon.com/dp/B0HLPFQF2K?maas=maas_adg_940E9614BE2DEA995CFE862A0EFCF8FB_afap_abs&ref_=aa_maas&tag=maas'
   };
   document.querySelectorAll('a[href]').forEach(link => {
     const url = new URL(link.href, location.href);
