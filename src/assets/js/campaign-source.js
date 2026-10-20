@@ -1,5 +1,6 @@
-// Preserve only this campaign's source through reading pages. No cookies,
-// browser storage, visitor identifiers, or third-party scripts are used.
+// Preserve this campaign's source and Google click identifiers through reading
+// pages. This link-rewriting script uses no cookies or browser storage.
+// Optional Google measurement is handled separately in ads-measurement.js.
 (() => {
   const params = new URLSearchParams(location.search);
   if (params.get('utm_source') !== 'google' || params.get('utm_medium') !== 'cpc' ||
@@ -14,7 +15,9 @@
     if (url.origin !== location.origin) return;
     if (tags[url.pathname]) { link.href = tags[url.pathname]; return; }
     if (!url.pathname.endsWith('/') || url.pathname.startsWith('/go/')) return;
-    for (const key of ['utm_source', 'utm_medium', 'utm_campaign']) url.searchParams.set(key, params.get(key));
+    for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'gclid', 'gbraid', 'wbraid']) {
+      if (params.has(key)) url.searchParams.set(key, params.get(key));
+    }
     link.href = url.href;
   });
 })();

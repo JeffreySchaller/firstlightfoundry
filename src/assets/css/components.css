@@ -188,3 +188,11 @@ body { margin: 0; background: var(--surface-page); color: var(--text-primary); f
 .ff-pv { padding: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; background: var(--surface-page); }
 .ff-pv--col { flex-direction: column; }
 .ff-pv__cap { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--text-muted); margin: 8px 0 0; }
+/* Optional ad measurement: compact, non-modal and keyboard accessible. */
+.measurement-panel { position: fixed; bottom: 1rem; left: 1rem; right: 1rem; z-index: 100; max-width: 48rem; margin: auto; padding: 1.2rem; background: #F4EEE2; color: #232321; border: 1px solid #887d70; box-shadow: 0 6px 30px #0002; font: 1rem/1.5 Georgia, serif; max-height: 75vh; overflow: auto; }
+.measurement-panel[hidden], .measurement-settings[hidden] { display: none; }
+.measurement-panel p { margin: 0 0 1rem; }
+.measurement-panel div { display: flex; flex-wrap: wrap; gap: .75rem; }
+.measurement-panel button { padding: .6rem 1rem; border: 1px solid currentColor; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.measurement-settings { border: 0; background: transparent; color: inherit; text-decoration: underline; cursor: pointer; font: inherit; }
+.measurement-panel button:focus-visible, .measurement-settings:focus-visible { outline: 2px solid #B8472A; outline-offset: 3px; }
