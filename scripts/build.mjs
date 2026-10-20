@@ -110,6 +110,7 @@ ${PROD ? '' : '<meta name="robots" content="noindex, nofollow">\n'}<link rel="ca
 <link rel="stylesheet" href="/assets/css/components.css">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script defer src="/assets/js/campaign-source.js"></script>
+<script defer src="/assets/js/ads-measurement.js"></script>
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script>` : ''}
 </head>
 <body class="ff-root">
@@ -135,7 +136,7 @@ ${body}
       <div><h2>The house</h2><ul><li><a href="/returning-to-craft/">${esc(B.title)}</a></li><li><a href="/about/">About</a></li><li><a href="/about/#send-word">Send word</a></li></ul></div>
       ${elsewhere ? `<div><h2>Elsewhere</h2><ul>${elsewhere}</ul></div>` : ''}
     </div>
-    <div class="ff-footer__legal"><span class="meta">Firstlight Foundry LLC · MMXXVI</span><span class="meta">Books, made well.</span></div>
+    <div class="ff-footer__legal"><span class="meta">Firstlight Foundry LLC · MMXXVI</span><span class="meta">Books, made well.</span><button type="button" class="measurement-settings" data-measurement-settings hidden>Ad measurement preferences</button></div>
   </div>
 </footer>
 </body>
