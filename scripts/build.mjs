@@ -191,9 +191,10 @@ const bookLD = {
 // ------------------------------------------------------------------ pages
 const pages = {};
 
-const chapterFilm = `<section class="section section--cream" id="chapter-one-film"><div class="wrap slow-reading">
-  <a href="https://youtu.be/x-G-8SmpSmg" aria-label="Watch Chapter One: The Inheritance on YouTube"><img src="/assets/img/chapter-one-film.jpg" alt="Returning to Craft on a sunlit desk. See your work differently." width="1280" height="720" loading="lazy" style="width:100%;height:auto"></a>
-  <div><p class="eyebrow">Watch · Chapter One · 29 minutes</p><h2 class="h-section">How did work become<br>this complicated?</h2><p>Join author Jeffrey Schaller for an illustrated reading of “The Inheritance.” Follow the story behind the way we work, and begin to see your own business with fresh eyes.</p><div class="actions"><a class="ff-btn ff-btn--primary" href="https://youtu.be/x-G-8SmpSmg">Watch Chapter One on YouTube <span aria-hidden="true">↗</span></a></div><p class="small">The complete first chapter. Free to watch.</p></div>
+const chapterFilm = `<section class="section section--cream" id="chapter-one-film"><div class="wrap chapter-film">
+  <div class="chapter-film__intro"><p class="eyebrow">Watch · Chapter One · 29 minutes</p><h2 class="h-section">How did work become this complicated?</h2><p>Join author Jeffrey Schaller for an illustrated reading of “The Inheritance.” Follow the story behind the way we work, and begin to see your own business with fresh eyes.</p></div>
+  <div class="chapter-film__player"><iframe src="https://www.youtube-nocookie.com/embed/x-G-8SmpSmg?playsinline=1&amp;rel=0" title="Returning to Craft — Chapter One: The Inheritance, read by Jeffrey Schaller" width="1280" height="720" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+  <div class="chapter-film__footer"><p class="small">The complete first chapter. Free to watch.</p><div class="actions"><a class="ff-btn ff-btn--secondary" href="https://www.youtube.com/channel/UCM00cZFiHDcPur0E-PwYqHw?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Subscribe to Firstlight Foundry <span aria-hidden="true">↗</span></a><a class="small" href="https://youtu.be/x-G-8SmpSmg" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a></div></div>
 </div></section>`;
 
 pages['/'] = layout({
