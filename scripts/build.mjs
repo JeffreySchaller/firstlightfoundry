@@ -205,10 +205,12 @@ pages['/'] = layout({
   <div class="edition-line"><span>Firstlight Foundry · A small studio</span><span>Est. MMXXVI</span></div>
   <div class="company-intro">
     <div><p class="eyebrow">Voices that deserve form.</p><h1>A small studio<br>shaping voices<br>into <em>form.</em></h1></div>
-    <div class="company-intro__text"><p class="lead">You have something worth saying. A lifetime of practice. An idea you keep returning to. A way of seeing that could help someone else.</p><p>Firstlight Foundry works with one author at a time to bring that thinking into a book. We help develop the ideas, shape the manuscript and hold it to the standard of a lasting work.</p><p class="company-promise">The author owns the voice.<br><em>We hold the form.</em></p><div class="actions"><a class="ff-btn ff-btn--primary" href="/about/#send-word">Start a conversation</a><a class="ff-btn ff-btn--quiet" href="/about/">Meet the studio <span aria-hidden="true">↗</span></a></div></div>
+    <div class="company-intro__text"><p class="lead">You have something worth saying. A lifetime of practice. An idea you keep returning to. A way of seeing that could help someone else.</p><p>Firstlight Foundry works with one author at a time to bring that thinking into a book. We help develop the ideas, shape the manuscript and hold it to the standard of a lasting work.</p><p class="company-promise">The author owns the voice.<br><em>We hold the form.</em></p><div class="actions"><a class="ff-btn ff-btn--primary" href="/about/#send-word">Start a conversation</a><a class="ff-btn ff-btn--secondary" href="#chapter-one-film">Watch Chapter One <span aria-hidden="true">↓</span></a></div></div>
   </div>
   <div class="opening-foot"><span>Made in conversation. Made to last.</span><a href="#from-the-press">Explore our first book <span aria-hidden="true">↓</span></a></div>
 </div></section>
+
+${chapterFilm}
 
 <section class="section company-work"><div class="wrap slow-reading"><div><p class="eyebrow">The work</p><p class="company-folio" aria-hidden="true">01</p></div><div><h2 class="h-section">What you know deserves<br>the time to take shape.</h2><p class="lead">Some people think best in conversation. Others have spent years doing the work, with little time to write about it.</p><p>We begin with what you know and what you want a reader to understand. Together, we question it, find its structure and work on the language until the book carries your thinking in your voice.</p><p>Whether you have a manuscript, an idea that is ready to become one, or an interest in what we are building, we would like to hear from you.</p><a class="text-link" href="/about/#send-word">Tell us what you are working on <span aria-hidden="true">↗</span></a></div></div></section>
 
@@ -236,8 +238,6 @@ pages['/'] = layout({
   <div class="section-heading"><div><p class="eyebrow">The Reading Room</p><h2 class="h-section">A few pages.<br>A different way of seeing.</h2></div><p class="lead">Understanding takes time with an idea. Start here, with two passages from the book. No sign-up needed.</p></div>
   ${readingCards(3)}
 </div></section>
-
-${chapterFilm}
 
 <section class="section section--cream"><div class="wrap slow-reading">
   <p class="eyebrow">Why a book</p><div><h2 class="h-section">Some ideas need<br>room to become yours.</h2><p class="lead">A name means little until you understand what it names.</p><p>In <cite>Returning to Craft</cite>, you watch the work happen before the language arrives. One scene builds on another. The connections become visible. By the time you have a name for what is happening, you have a reason to use it.</p><p>That is what the book asks of your time, and what it hopes to give back: understanding you can carry into your own work.</p></div>
