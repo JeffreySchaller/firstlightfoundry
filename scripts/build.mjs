@@ -191,6 +191,11 @@ const bookLD = {
 // ------------------------------------------------------------------ pages
 const pages = {};
 
+const chapterFilm = `<section class="section section--cream" id="chapter-one-film"><div class="wrap slow-reading">
+  <a href="https://youtu.be/x-G-8SmpSmg" aria-label="Watch Chapter One: The Inheritance on YouTube"><img src="/assets/img/chapter-one-film.jpg" alt="Returning to Craft on a sunlit desk. See your work differently." width="1280" height="720" loading="lazy" style="width:100%;height:auto"></a>
+  <div><p class="eyebrow">Watch · Chapter One · 29 minutes</p><h2 class="h-section">How did work become<br>this complicated?</h2><p>Join author Jeffrey Schaller for an illustrated reading of “The Inheritance.” Follow the story behind the way we work, and begin to see your own business with fresh eyes.</p><div class="actions"><a class="ff-btn ff-btn--primary" href="https://youtu.be/x-G-8SmpSmg">Watch Chapter One on YouTube <span aria-hidden="true">↗</span></a></div><p class="small">The complete first chapter. Free to watch.</p></div>
+</div></section>`;
+
 pages['/'] = layout({
   title: 'Firstlight Foundry', pathname: '/',
   description: `Firstlight Foundry is a small studio shaping voices into form. We work with one author at a time to make books from ideas, experience and a voice worth hearing. Meet the studio and explore our first title, ${B.title}.`,
@@ -231,6 +236,8 @@ pages['/'] = layout({
   <div class="section-heading"><div><p class="eyebrow">The Reading Room</p><h2 class="h-section">A few pages.<br>A different way of seeing.</h2></div><p class="lead">Understanding takes time with an idea. Start here, with two passages from the book. No sign-up needed.</p></div>
   ${readingCards(3)}
 </div></section>
+
+${chapterFilm}
 
 <section class="section section--cream"><div class="wrap slow-reading">
   <p class="eyebrow">Why a book</p><div><h2 class="h-section">Some ideas need<br>room to become yours.</h2><p class="lead">A name means little until you understand what it names.</p><p>In <cite>Returning to Craft</cite>, you watch the work happen before the language arrives. One scene builds on another. The connections become visible. By the time you have a name for what is happening, you have a reason to use it.</p><p>That is what the book asks of your time, and what it hopes to give back: understanding you can carry into your own work.</p></div>
@@ -299,6 +306,8 @@ pages['/returning-to-craft/'] = layout({
   </div>
 </div></section>
 
+${chapterFilm}
+
 <section class="section section--cream"><div class="wrap">
   <p class="eyebrow">What is inside</p>
   <h2 class="h-section">Five parts, nineteen chapters.</h2>
@@ -322,7 +331,8 @@ pages['/reading/'] = layout({
   <h1 class="h-section">Sit down with the book.</h1>
   <p class="lead narrow">A place to spend time with an idea. These two passages are the book’s own text, unchanged. Begin with a familiar problem in the Preface, or see the business at its simplest in Chapter Four.</p>
   ${readingCards()}
-</div></section>`,
+</div></section>
+${chapterFilm}`,
 });
 
 // Articles
