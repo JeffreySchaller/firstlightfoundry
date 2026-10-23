@@ -1,0 +1,65 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+
+const source = fs.readFileSync(new URL('../src/assets/js/ads-measurement.js', import.meta.url), 'utf8');
+function setup({ hostname = 'firstlightfoundry.com', choice, legacy, gpc = false } = {}) {
+  const scripts = [], handlers = {}, timers = [], navigation = [];
+  const storage = new Map();
+  if (choice) storage.set('ff-site-measurement-v2', choice);
+  if (legacy) storage.set('ff-ad-measurement-v1', legacy);
+  const button = value => ({ dataset: { choice: value }, addEventListener(_, fn) { this.click = fn; }, focus() {} });
+  const allow = button('granted'), reject = button('denied'), paragraph = {};
+  const panel = { hidden: true, setAttribute() {}, querySelector(selector) { return selector === 'p' ? paragraph : selector.includes('denied') ? reject : allow; }, querySelectorAll() { return [allow, reject]; } };
+  const settings = { focus() {}, addEventListener(_, fn) { this.click = fn; } };
+  const location = { hostname, origin: 'https://' + hostname, pathname: '/returning-to-craft/', search: '?utm_source=google&utm_medium=cpc&email=private%40example.com#private', href: 'https://' + hostname + '/returning-to-craft/', assign(url) { navigation.push(url); }, reload() { navigation.push('reload'); } };
+  const document = { referrer: 'https://example.com/private?email=secret', createElement(tag) { return tag === 'section' ? panel : {}; }, head: { appendChild(script) { scripts.push(script); } }, body: { appendChild() {} }, querySelector() { return settings; }, addEventListener(type, fn) { handlers[type] = fn; } };
+  const window = {};
+  vm.runInNewContext(source, { window, document, location, navigator: { globalPrivacyControl: gpc }, localStorage: { getItem: key => storage.get(key) || null, setItem: (key, value) => storage.set(key, value) }, URL, URLSearchParams, setTimeout(fn) { timers.push(fn); } });
+  const commands = () => Array.from(window.dataLayer || [], args => Array.from(args));
+  function click(href = location.origin + '/go/amazon-paperback/', extras = {}) {
+    const event = { type: 'click', button: 0, defaultPrevented: false, target: { closest() { return { href, target: '' }; } }, preventDefault() { this.defaultPrevented = true; }, ...extras };
+    handlers.click(event);
+    return event;
+  }
+  return { scripts, panel, allow, reject, commands, storage, click, timers, navigation };
+}
+const fresh = setup({ legacy: 'granted' });
+assert.equal(fresh.scripts.length, 0, 'old ad-only consent must not enable Analytics');
+assert.equal(fresh.panel.hidden, false);
+fresh.reject.click();
+assert.equal(fresh.scripts.length, 0);
+const accepted = setup();
+accepted.allow.click();
+assert.equal(accepted.scripts.length, 1, 'one shared Google library');
+const configs = accepted.commands().filter(args => args[0] === 'config');
+assert.deepEqual(configs.map(args => args[1]), ['AW-18500379482', 'G-CPRFL26SV3']);
+assert.equal(configs[1][2].allow_google_signals, false);
+assert.equal(configs[1][2].page_referrer, 'https://example.com/');
+assert(!configs[1][2].page_location.includes('private'));
+assert(!configs[1][2].page_location.includes('email'));
+const event = accepted.click();
+assert.equal(event.defaultPrevented, true);
+assert.equal(accepted.commands().filter(args => args[1] === 'amazon_outbound_click').length, 1);
+assert.equal(accepted.commands().find(args => args[1] === 'amazon_outbound_click')[2].book_edition, 'paperback');
+assert.equal(accepted.commands().find(args => args[1] === 'conversion')[2].value, 0);
+accepted.click();
+assert.equal(accepted.commands().filter(args => args[1] === 'conversion').length, 1);
+accepted.timers.forEach(fn => fn());
+assert.equal(accepted.navigation.length, 1, 'navigation survives blocked tagging');
+accepted.reject.click();
+const denied = accepted.commands().filter(args => args[0] === 'consent').at(-1)[2];
+assert.equal(denied.analytics_storage, 'denied');
+assert.equal(denied.ad_personalization, 'denied');
+assert.equal(accepted.navigation.at(-1), 'reload');
+const gpc = setup({ choice: 'granted', gpc: true });
+assert.equal(gpc.scripts.length, 0);
+gpc.allow.click();
+assert.equal(gpc.scripts.length, 0, 'GPC cannot be overridden');
+assert.equal(setup({ hostname: 'localhost', choice: 'granted' }).scripts.length, 0);
+const modifier = setup({ choice: 'granted' });
+assert.equal(modifier.click(undefined, { metaKey: true }).defaultPrevented, false);
+const unrelated = setup({ choice: 'granted' });
+unrelated.click('https://example.com/');
+assert.equal(unrelated.commands().filter(args => args[0] === 'event').length, 0);
+console.log('Measurement checks passed: consent, GPC, sanitized URLs, Analytics configuration, edition events, and navigation.');
